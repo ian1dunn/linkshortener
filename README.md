@@ -9,7 +9,8 @@
 * Timestamp
 
 ### User
-* Name
+* First Name
+* Last Name
 * Username
 * Email
 * Password
