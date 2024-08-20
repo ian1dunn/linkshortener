@@ -5,6 +5,7 @@
 ### Link
 * Short URL
 * URL
+* Owner
 * Number of Clicks
 * Timestamp
 
