@@ -1,22 +1,10 @@
 from django.db import models
 
 
-class User(models.Model):
-    first_name = models.CharField(max_length=40)
-    last_name = models.CharField(max_length=40)
-    username = models.CharField(max_length=60)
-    email = models.CharField(max_length=60)
-    password = models.CharField(max_length=60)
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f'{self.username}<{self.email}>'
-
-
 class Link(models.Model):
     short_url = models.CharField(max_length=20)
     url = models.CharField(max_length=2000)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    owner = models.ForeignKey('auth.User', related_name='links', on_delete=models.CASCADE)
     clicks = models.IntegerField(default=0)
     timestamp = models.DateTimeField(auto_now_add=True)
 

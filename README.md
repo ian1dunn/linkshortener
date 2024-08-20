@@ -24,8 +24,9 @@
 | Request | Endpoint     | Behavior             |
 |---------|--------------|----------------------|
 | GET     | `/links`     | Get all links        |
+| POST    | `/links/`    | Create/update a link |
 | GET     | `/links/:id` | Get a single link    |
-| POST    | `/links/:id` | Create/update a link |
+| PUT     | `/links/:id` | Update a link        |
 | DELETE  | `/links/:id` | Delete a link        |
 
 ### `/users`
@@ -33,6 +34,7 @@
 | Request | Endpoint     | Behavior             |
 |---------|--------------|----------------------|
 | GET     | `/users`     | Get all users        |
+| POST    | `/users/`    | Create/update a user |
 | GET     | `/users/:id` | Get a single user    |
-| POST    | `/users/:id` | Create/update a user |
+| PUT     | `/users/:id` | Update a user        |
 | DELETE  | `/users/:id` | Delete a user        |
