@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from backend.link_api.models import Link, User
+from link_api.models import Link, User
 
 
 class UserSerializer(serializers.ModelSerializer):
