@@ -1,5 +1,34 @@
 # linkshortener
 
+## Quickstart Guide
+
+### Backend
+```bash
+$ cd backend
+
+# Install all relevant packages
+$ pip install -r requirements.txt
+
+# First-time SQLite database setup
+$ python manage.py makemigrations
+$ python manage.py migrate
+
+# Start the server
+$ python manage.py runserver
+```
+
+### Frontend
+```bash
+# After starting the backend
+$ cd ../frontend
+
+# Install all relevant packages
+$ npm install
+
+# Start React app (development)
+$ npm run start
+```
+
 ## Models
 
 ### Link
