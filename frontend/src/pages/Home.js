@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import AuthContext from "../context/AuthContext";
+import {getAllLinks} from "../services/links";
 
 const HomePage = () => {
     const { authTokens, logoutUser } = useContext(AuthContext);
@@ -10,26 +11,28 @@ const HomePage = () => {
     }, [])
 
     const getLinks = async() => {
-        let response = await fetch('http://127.0.0.1:8000/api/links/', {
-        method: 'GET',
-        headers:{
-            'Content-Type': 'application/json',
-            'Authorization':'Bearer ' + String(authTokens.access)
-        }
-        })
-        let data = await response.json()
-        console.log(data)
-        if(response.status === 200){
+        let data = await getAllLinks(authTokens.access)
+
+        if(data){
             setLinks(data)
-        } else if(response.statusText === 'Unauthorized'){
+        } else {
             logoutUser()
         }
     }
 
+    const linkItems = links.map((link) =>
+        <li>
+            SHORT URL: {link.short_url}<br/>
+            URL: {link.url}<br/>
+            CLICKS: {link.clicks}<br/>
+            OWNER: {link.owner}
+        </li>
+    );
+
     return (
         <div>
             <p>You are logged in to the homepage!</p>
-            <p>{links.toString()}</p>
+            <ul>{linkItems}</ul>
         </div>
     )
 }

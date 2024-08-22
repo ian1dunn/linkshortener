@@ -39,7 +39,7 @@ export const AuthProvider = ({children}) => {
     }, [navigate])
 
     const updateToken = useCallback(async () => {
-        let data = await update(authTokens)
+        let data = await update(authTokens?.refresh)
 
         if (data) {
             setAuthTokens(data)
