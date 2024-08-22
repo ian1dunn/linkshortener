@@ -60,10 +60,11 @@ $ npm run start
 
 ### `/users`
 
-| Request | Endpoint     | Behavior             |
-|---------|--------------|----------------------|
-| GET     | `/users`     | Get all users        |
-| POST    | `/users/`    | Create/update a user |
-| GET     | `/users/:id` | Get a single user    |
-| PUT     | `/users/:id` | Update a user        |
-| DELETE  | `/users/:id` | Delete a user        |
+| Request | Endpoint           | Behavior                        |
+|--------|--------------------|---------------------------------|
+| GET    | `/users`           | Get all users                   |
+| POST   | `/users/`          | Create/update a user            |
+| GET    | `/users/:id`       | Get a single user               |
+| PUT    | `/users/:id`       | Update a user                   |
+| DELETE | `/users/:id`       | Delete a user                   |
+| GET    | `/users/:id/links` | Get the links created by a user |
