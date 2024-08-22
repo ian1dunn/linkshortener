@@ -9,8 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'username', 'email', 'password', 'date_joined', 'last_login',
-                  'links']
+        fields = ['id', 'first_name', 'last_name', 'username', 'email', 'date_joined', 'last_login', 'links']
 
 
 class LinkSerializer(serializers.ModelSerializer):
