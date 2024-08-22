@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
-from rest_framework import viewsets, generics, permissions
+from django.views import View
+from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
-from rest_framework_simplejwt.views import TokenObtainPairView
 
 from link_api.models import Link
 from link_api.permissions import IsAuthorOrReadOnly
@@ -17,6 +17,14 @@ def get_routes(request):
         '/api/token/refresh'
     ]
     return JsonResponse(routes, safe=False)
+
+
+class UserLinkList(generics.ListAPIView):
+    serializer_class = LinkSerializer
+
+    def get_queryset(self):
+        queryset = Link.objects.filter(owner_id=self.kwargs['pk'])
+        return queryset
 
 
 class UserList(generics.ListAPIView):

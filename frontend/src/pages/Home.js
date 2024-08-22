@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import AuthContext from "../context/AuthContext";
-import {getAllLinks} from "../services/links";
+import {getUserLinks} from "../services/links";
 import {getUserByID} from "../services/users";
 
 const HomePage = () => {
@@ -14,7 +14,7 @@ const HomePage = () => {
     }, [])
 
     const getLinks = async() => {
-        let data = await getAllLinks(authTokens.access)
+        let data = await getUserLinks(authTokens.access, user.user_id)
 
         if(data){
             setLinks(data)
@@ -25,7 +25,6 @@ const HomePage = () => {
 
     const getUser = async() => {
         let data = await getUserByID(authTokens.access, user.user_id)
-        console.log(data)
 
         if(data){
             setUserData(data)
