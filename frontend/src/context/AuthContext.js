@@ -30,7 +30,8 @@ export const AuthProvider = ({children}) => {
     }
 
     let logoutUser = useCallback((e) => {
-        e.preventDefault()
+        if (e) e.preventDefault()
+
         localStorage.removeItem('authTokens')
         setAuthTokens(null)
         setUser(null)
