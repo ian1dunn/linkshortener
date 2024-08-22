@@ -3,7 +3,7 @@ import AuthContext from "../context/AuthContext";
 import {getAllLinks} from "../services/links";
 
 const HomePage = () => {
-    const { authTokens, logoutUser } = useContext(AuthContext);
+    const { authTokens, user, logoutUser } = useContext(AuthContext);
     let [links, setLinks] = useState([])
 
     useEffect(() => {
@@ -12,6 +12,9 @@ const HomePage = () => {
 
     const getLinks = async() => {
         let data = await getAllLinks(authTokens.access)
+
+        console.log(data)
+        console.log(user)
 
         if(data){
             setLinks(data)

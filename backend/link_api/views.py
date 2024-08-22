@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from link_api.models import Link
 from link_api.permissions import IsAuthorOrReadOnly
-from link_api.serializers import UserSerializer, LinkSerializer, LinkAPITokenObtainPairSerializer
+from link_api.serializers import UserSerializer, LinkSerializer
 
 from django.http import JsonResponse
 
@@ -17,10 +17,6 @@ def get_routes(request):
         '/api/token/refresh'
     ]
     return JsonResponse(routes, safe=False)
-
-
-class LinkAPITokenObtainPairView(TokenObtainPairView):
-    serializer_class = LinkAPITokenObtainPairSerializer
 
 
 class UserList(generics.ListAPIView):
