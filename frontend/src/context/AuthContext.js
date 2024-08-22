@@ -1,7 +1,7 @@
 import {createContext, useCallback, useEffect, useState} from 'react'
 import { jwtDecode } from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
-import {login} from "../services/auth";
+import {login, update} from "../services/auth";
 
 const AuthContext = createContext()
 
@@ -18,8 +18,6 @@ export const AuthProvider = ({children}) => {
         e.preventDefault()
 
         let data = await login(e.target.username.value, e.target.password.value);
-        console.log(data)
-        console.log(data.access)
 
         if(data){
             localStorage.setItem('authTokens', JSON.stringify(data));
@@ -40,17 +38,9 @@ export const AuthProvider = ({children}) => {
     }, [navigate])
 
     const updateToken = useCallback(async () => {
+        let data = await update(authTokens)
 
-        const response = await fetch('http://127.0.0.1:8000/api/token/refresh/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({refresh: authTokens?.refresh})
-        })
-
-        const data = await response.json()
-        if (response.status === 200) {
+        if (data) {
             setAuthTokens(data)
             setUser(jwtDecode(data.access))
             localStorage.setItem('authTokens', JSON.stringify(data))
