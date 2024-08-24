@@ -2,15 +2,19 @@ import React, {useContext, useEffect, useState} from 'react'
 import AuthContext from "../context/AuthContext";
 import {getUserLinks} from "../services/links";
 import {getUserByID} from "../services/users";
+import Header from "./Header";
+import {Container} from "react-bootstrap";
 
-const HomePage = () => {
+const Dashboard = () => {
     const { authTokens, user, logoutUser } = useContext(AuthContext);
     let [links, setLinks] = useState([])
     let [userData, setUserData] = useState([])
 
     useEffect(() => {
-        getLinks()
-        getUser()
+        if (user) {
+            getLinks()
+            getUser()
+        }
     }, [])
 
     const getLinks = async() => {
@@ -43,8 +47,8 @@ const HomePage = () => {
     );
 
     return (
-        <div>
-            <p>You are logged in to the homepage!</p>
+        <Container>
+            <Header/>
             <ul>
                 <li>
                     FIRST NAME: {userData.first_name}<br/>
@@ -56,8 +60,9 @@ const HomePage = () => {
                 </li>
                 {linkItems}
             </ul>
-        </div>
-    )
+        </Container>
+
+)
 }
 
-export default HomePage
+export default Dashboard

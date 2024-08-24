@@ -35,7 +35,7 @@ export const AuthProvider = ({children}) => {
         localStorage.removeItem('authTokens')
         setAuthTokens(null)
         setUser(null)
-        navigate('/login')
+        navigate('/')
     }, [navigate])
 
     const updateToken = useCallback(async () => {
