@@ -4,6 +4,7 @@ import {getUserLinks} from "../services/links";
 import {getUserByID} from "../services/users";
 import Header from "./Header";
 import {Container} from "react-bootstrap";
+import Links from "./Links";
 
 const Dashboard = () => {
     const { authTokens, user, logoutUser } = useContext(AuthContext);
@@ -12,7 +13,6 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (user) {
-            getLinks()
             getUser()
         }
     }, [])
@@ -37,15 +37,6 @@ const Dashboard = () => {
         }
     }
 
-    const linkItems = links.map((link) =>
-        <li key={link.id}>
-            SHORT URL: {link.short_url}<br/>
-            URL: {link.url}<br/>
-            CLICKS: {link.clicks}<br/>
-            OWNER: {link.owner}
-        </li>
-    );
-
     return (
         <Container>
             <ul>
@@ -57,7 +48,7 @@ const Dashboard = () => {
                     DATE JOINED: {userData.date_joined}<br/>
                     LAST_LOGIN: {userData.last_login}<br/>
                 </li>
-                {linkItems}
+                <Links/>
             </ul>
         </Container>
 
