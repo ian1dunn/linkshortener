@@ -7,7 +7,10 @@ import Header from "../components/Header";
 const HomePage = () => {
     const { user } = useContext(AuthContext);
 
-    return user ? <Dashboard /> : <Login />;
+    return user ? <div>
+        <Header />
+        <Dashboard />
+    </div> : <Login />;
 }
 
 export default HomePage

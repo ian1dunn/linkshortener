@@ -48,7 +48,6 @@ const Dashboard = () => {
 
     return (
         <Container>
-            <Header/>
             <ul>
                 <li>
                     FIRST NAME: {userData.first_name}<br/>
