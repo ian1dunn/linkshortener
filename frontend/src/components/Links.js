@@ -9,10 +9,8 @@ const Links = () => {
     let [links, setLinks] = useState([])
 
     useEffect(() => {
-        if (user) {
-            getLinks()
-        }
-    }, [])
+        if (user) getLinks()
+    })
 
     const getLinks = async() => {
         let data = await getUserLinks(authTokens.access, user.user_id)
@@ -40,7 +38,7 @@ const Links = () => {
                         links.map((link) =>
                             <tr key={link.id}>
                                 <td><Link to={link.short_url} target="_blank">{link.short_url}</Link></td>
-                                <td><a href={link.url} target="_blank">{link.url}</a></td>
+                                <td><a href={link.url} target="_blank" rel="noreferrer">{link.url}</a></td>
                                 <td>{link.clicks}</td>
                                 <td><Button variant="outline-danger">x</Button></td>
                             </tr>

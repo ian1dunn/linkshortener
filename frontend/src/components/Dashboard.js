@@ -1,31 +1,18 @@
 import React, {useContext, useEffect, useState} from 'react'
 import AuthContext from "../context/AuthContext";
-import {getUserLinks} from "../services/links";
 import {getUserByID} from "../services/users";
-import Header from "./Header";
 import {Container} from "react-bootstrap";
 import Links from "./Links";
 
 const Dashboard = () => {
     const { authTokens, user, logoutUser } = useContext(AuthContext);
-    let [links, setLinks] = useState([])
     let [userData, setUserData] = useState([])
 
     useEffect(() => {
         if (user) {
             getUser()
         }
-    }, [])
-
-    const getLinks = async() => {
-        let data = await getUserLinks(authTokens.access, user.user_id)
-
-        if(data){
-            setLinks(data)
-        } else {
-            logoutUser()
-        }
-    }
+    })
 
     const getUser = async() => {
         let data = await getUserByID(authTokens.access, user.user_id)

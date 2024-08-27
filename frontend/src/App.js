@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-import Header from './components/Header'
 import {AuthProvider} from "./context/AuthContext";
 import HomePage from "./pages/HomePage";
 import React from "react";

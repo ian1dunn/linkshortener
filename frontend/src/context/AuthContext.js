@@ -14,19 +14,16 @@ export const AuthProvider = ({children}) => {
 
     const navigate = useNavigate()
 
-    let loginUser = async (e) => {
-        e.preventDefault()
+    let loginUser = async (username, password) => {
+        let data = await login(username, password);
+        if(data == null)
+            return false
 
-        let data = await login(e.target.username.value, e.target.password.value);
-
-        if(data){
-            localStorage.setItem('authTokens', JSON.stringify(data));
-            setAuthTokens(data)
-            setUser(jwtDecode(data.access))
-            navigate('/')
-        } else {
-            alert('Something went wrong while logging in the user!')
-        }
+        localStorage.setItem('authTokens', JSON.stringify(data));
+        setAuthTokens(data)
+        setUser(jwtDecode(data.access))
+        navigate('/')
+        return true
     }
 
     let logoutUser = useCallback((e) => {

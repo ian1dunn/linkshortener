@@ -9,7 +9,13 @@ export const login = async (username, password) => {
             headers: {
                 'Content-Type': 'application/json'
             }
+        }).catch(() => {
+            return null
         });
+
+    if (response == null || response.status !== 200)
+        return null;
+
     return response.data;
 }
 
@@ -22,6 +28,9 @@ export const update = async (refreshToken) => {
                 'Content-Type': 'application/json'
             }
         });
+
+    if (response.status !== 200)
+        return null;
 
     return response.data;
 }
