@@ -24,13 +24,14 @@ const Links = () => {
 
     return (
         <Container>
-            <Table striped bordered hover>
+            <br/>
+            <Table striped hover>
                 <thead>
                     <tr>
                         <th>Short URL</th>
                         <th>URL</th>
                         <th>Clicks</th>
-                        <th></th>
+                        <th className="fit"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +41,7 @@ const Links = () => {
                                 <td><Link to={link.short_url} target="_blank">{link.short_url}</Link></td>
                                 <td><a href={link.url} target="_blank" rel="noreferrer">{link.url}</a></td>
                                 <td>{link.clicks}</td>
-                                <td><Button variant="outline-danger">x</Button></td>
+                                <td><Button variant="outline-danger" className="fit">Delete</Button></td>
                             </tr>
                         )
                     }

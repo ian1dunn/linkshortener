@@ -1,15 +1,15 @@
 import React, {useContext} from 'react'
 import AuthContext from "../context/AuthContext";
-import Dashboard from "../components/Dashboard";
 import Login from "../components/Login";
 import Header from "../components/Header";
+import Links from "../components/Links";
 
 const HomePage = () => {
     const { user } = useContext(AuthContext);
 
     return user ? <div>
         <Header />
-        <Dashboard />
+        <Links/>
     </div> : <Login />;
 }
 
