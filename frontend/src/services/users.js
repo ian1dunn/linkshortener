@@ -1,11 +1,6 @@
 import client, {USER_ENDPOINT} from "./api";
 
 export const getUserByID = async (accessToken, userID) => {
-    const response = await client.get(USER_ENDPOINT + userID + '/', {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization':'Bearer ' + String(accessToken)
-        }
-    });
+    const response = await client.get(USER_ENDPOINT + userID + '/');
     return response.data;
 }

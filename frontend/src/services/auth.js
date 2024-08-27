@@ -5,10 +5,7 @@ export const login = async (username, password) => {
         TOKEN_ENDPOINT,
         {
             username: username,
-            password: password,
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            password: password
         }).catch(() => {
             return null
         });
@@ -23,10 +20,7 @@ export const update = async (refreshToken) => {
     const response = await client.post(
         TOKEN_REFRESH_ENDPOINT,
         {
-            refresh: refreshToken,
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            refresh: refreshToken
         });
 
     if (response.status !== 200)

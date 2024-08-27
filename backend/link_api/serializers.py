@@ -18,4 +18,4 @@ class LinkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Link
-        fields = ['id', 'short_url', 'url', 'owner', 'clicks', 'timestamp']  # TODO nest owner
+        fields = ['id', 'short_url', 'url', 'owner', 'clicks', 'timestamp']
