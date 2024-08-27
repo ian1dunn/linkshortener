@@ -9,20 +9,18 @@ const Dashboard = () => {
     let [userData, setUserData] = useState([])
 
     useEffect(() => {
-        if (user) {
-            getUser()
-        }
-    })
+        const getUser = async() => {
+            let data = await getUserByID(authTokens.access, user.user_id)
 
-    const getUser = async() => {
-        let data = await getUserByID(authTokens.access, user.user_id)
-
-        if(data){
-            setUserData(data)
-        } else {
-            logoutUser()
+            if(data){
+                setUserData(data)
+            } else {
+                logoutUser()
+            }
         }
-    }
+
+        getUser()
+    }, [user, authTokens.access, logoutUser])
 
     return (
         <Container>

@@ -9,18 +9,18 @@ const Links = () => {
     let [links, setLinks] = useState([])
 
     useEffect(() => {
-        if (user) getLinks()
-    })
+        const getLinks = async() => {
+            let data = await getUserLinks(authTokens.access, user.user_id)
 
-    const getLinks = async() => {
-        let data = await getUserLinks(authTokens.access, user.user_id)
-
-        if(data){
-            setLinks(data)
-        } else {
-            logoutUser()
+            if(data){
+                setLinks(data)
+            } else {
+                logoutUser()
+            }
         }
-    }
+
+        getLinks()
+    }, [authTokens.access, user, logoutUser])
 
     return (
         <Container>
