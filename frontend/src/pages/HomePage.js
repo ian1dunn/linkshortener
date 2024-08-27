@@ -31,14 +31,13 @@ const HomePage = () => {
     const handleSubmit = () => {
         handleClose();
         getLinks();
-        console.log("submitted")
     }
 
     return user ? <div>
         <Header />
         <Container>
             <br/>
-            <Links links={links} />
+            <Links links={links} update={getLinks}/>
             <div className="d-flex justify-content-center">
                 <Button variant="success" onClick={handleShow}>Shorten New Link</Button>
             </div>

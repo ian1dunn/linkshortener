@@ -12,7 +12,18 @@ export const createLink = async (accessToken, short_url, url) => {
             url: url,
         },
         {
-           headers: {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization':'Bearer ' + String(accessToken)
+            }
+        });
+    return response.data;
+}
+
+export const deleteLink = async (accessToken, id) => {
+    const response = await client.delete(ROOT_URL + LINK_ENDPOINT + id + "/",
+        {
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization':'Bearer ' + String(accessToken)
             }

@@ -1,14 +1,21 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {Button, Table} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {deleteLink} from "../services/links";
+import AuthContext from "../context/AuthContext";
 
-const Links = ({ links }) => {
+const Links = ({ links, update }) => {
+    const { authTokens } = useContext(AuthContext);
     const [ linkProp, setLinkProp ] = useState(links);
 
     useEffect(() => {
         setLinkProp(links)
-        console.log("links updated")
     }, [links]);
+
+    const removeLink = async (id) => {
+        await deleteLink(authTokens.access, id);
+        update();
+    }
 
     return (
         <Table striped hover>
@@ -27,7 +34,7 @@ const Links = ({ links }) => {
                             <td><Link to={link.short_url} target="_blank">{link.short_url}</Link></td>
                             <td><a href={link.url} target="_blank" rel="noreferrer">{link.url}</a></td>
                             <td>{link.clicks}</td>
-                            <td><Button variant="outline-danger" className="fit">Delete</Button></td>
+                            <td><Button variant="outline-danger" className="fit" onClick={() => removeLink(link.id)}>Delete</Button></td>
                         </tr>
                     )
                 }
