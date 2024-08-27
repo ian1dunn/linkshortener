@@ -24,13 +24,14 @@ const HomePage = () => {
 
     useEffect(() => {
         getLinks()
+    // eslint-disable-next-line
     }, []);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         handleClose();
-        getLinks();
+        await getLinks();
     }
 
     return user ? <div>

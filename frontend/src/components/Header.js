@@ -7,19 +7,19 @@ const Header = () => {
     let { user, logoutUser, authTokens } = useContext(AuthContext)
     let [userData, setUserData] = useState([])
 
-    const getUser = async() => {
-        let data = await getUserByID(authTokens.access, user.user_id)
-
-        if(data){
-            setUserData(data)
-        } else {
-            logoutUser()
-        }
-    }
-
     useEffect(() => {
+        const getUser = async() => {
+            let data = await getUserByID(authTokens.access, user.user_id)
+
+            if(data){
+                setUserData(data)
+            } else {
+                logoutUser()
+            }
+        }
+
         getUser()
-    }, [])
+    }, [authTokens, user, logoutUser])
 
     return (
         <Navbar expand="md" className="navbar-dark bg-dark">
