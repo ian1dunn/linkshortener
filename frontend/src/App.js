@@ -13,6 +13,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/:short_url" element={<Redirect />}/>
+                        <Route path="*" element={<Redirect page='/' />}/>
                     </Routes>
                 </AuthProvider>
             </Router>

@@ -1,20 +1,23 @@
-import {Navigate, useNavigate, useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import {getLink} from "../services/links";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 
-const Redirect = () => {
+const Redirect = ({ page }) => {
     const { short_url } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
         const getUrl = async () => {
-            const link = await getLink(short_url);
+            if (page)
+                return navigate(page);
+
+            const link = await getLink(short_url.split('/')[0]); // First component of shortened url
             if (link) window.location.href = link.url;
             else navigate('/');
         }
 
         getUrl();
-    }, [short_url]);
+    }, [short_url, navigate, page]);
 
     return (<div><></></div>); // TODO occasionally throws Warning: Invalid DOM property `class`. Did you mean `className` in console
 }
