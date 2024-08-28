@@ -30,8 +30,8 @@ export const createLink = async (accessToken, short_url, url) => {
             }
         });
 
-    if (response.status !== 200) {
-        throw Error(response.data.toString());  // TODO implement error handling wrapper for API errors and make more descriptive from axios
+    if (response.status !== 200 || response.status !== 201) {
+        throw Error(response.statusText);  // TODO implement error handling wrapper for API errors and make more descriptive from axios
     }
 
     return response.data;
