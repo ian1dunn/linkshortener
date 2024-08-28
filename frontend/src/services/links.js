@@ -17,6 +17,11 @@ export const createLink = async (accessToken, short_url, url) => {
                 'Authorization':'Bearer ' + String(accessToken)
             }
         });
+
+    if (response.status !== 200) {
+        throw Error(response.data.toString());  // TODO implement error handling wrapper for API errors and make more descriptive from axios
+    }
+
     return response.data;
 }
 

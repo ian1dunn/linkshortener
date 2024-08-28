@@ -1,19 +1,10 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {Button, Container, Form} from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import AuthContext from "../context/AuthContext";
-import {createLink} from "../services/links";
 
-const CreateLink = (props) => {
+const CreateLink = ({ onSubmit }) => {
     const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)/
-    const { authTokens } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    // const [ loginError, setLoginError ] = useState(false)
-
-    const onSubmit = async (data) => {
-        await createLink(authTokens.access, data.short_url, data.url)
-        props.onClick()
-    }
 
     return (
         <Container className="d-flex flex-column justify-content-center align-items-center text-center">
@@ -33,7 +24,6 @@ const CreateLink = (props) => {
                 />
                 {errors.url && <p className="text-danger">Invalid URL. (Include http/https)</p>}
                 <Button class="btn btn-success" type="submit">Create Link</Button>
-                {/*{loginError && <p className="text-danger">Invalid credentials.</p>}*/}
             </Form>
         </Container>
     )
