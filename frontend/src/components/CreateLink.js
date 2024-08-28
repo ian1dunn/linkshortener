@@ -11,8 +11,8 @@ const CreateLink = (props) => {
     // const [ loginError, setLoginError ] = useState(false)
 
     const onSubmit = async (data) => {
-        props.onClick()
         await createLink(authTokens.access, data.short_url, data.url)
+        props.onClick()
     }
 
     return (

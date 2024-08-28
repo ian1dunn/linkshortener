@@ -8,17 +8,15 @@ import {getUserLinks} from "../services/links";
 import Links from "../components/Links";
 
 const HomePage = () => {
-    const { authTokens, user, logoutUser } = useContext(AuthContext);
+    const { authTokens, user } = useContext(AuthContext);
     const [show, setShow] = useState(false);
     let [links, setLinks] = useState([])
 
     const getLinks = async() => {
-        let data = await getUserLinks(authTokens.access, user.user_id);
-
-        if(data){
-            setLinks(data)
-        } else {
-            logoutUser()
+        if (authTokens && user) {
+            let data = await getUserLinks(authTokens.access, user.user_id);
+            if(data)
+                setLinks(data)
         }
     }
 
