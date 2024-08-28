@@ -47,3 +47,13 @@ export const deleteLink = async (accessToken, id) => {
         });
     return response.data;
 }
+
+export const incrementLinkClicks = async (short_url) => {
+    const link = await getLink(short_url); // TODO add new endpoint
+
+    const response = await client.patch(ROOT_URL + LINK_ENDPOINT + link.id + "/",
+        {
+            clicks: link.clicks + 1
+        });
+    return response.data;
+}

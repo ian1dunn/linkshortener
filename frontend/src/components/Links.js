@@ -17,6 +17,8 @@ const Links = ({ links, update }) => {
         update();
     }
 
+    // TODO link clicks require refresh
+
     return (
         <Table striped hover>
             <thead>

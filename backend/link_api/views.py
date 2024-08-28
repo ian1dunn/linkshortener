@@ -27,7 +27,7 @@ class UserLinkList(generics.ListAPIView):
         return queryset
 
 
-class UserList(generics.ListAPIView):
+class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -49,4 +49,3 @@ class LinkList(generics.ListCreateAPIView):
 class LinkDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = Link.objects.all()
     serializer_class = LinkSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]

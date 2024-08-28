@@ -1,5 +1,5 @@
 import {useNavigate, useParams} from 'react-router-dom'
-import {getLink} from "../services/links";
+import {getLink, incrementLinkClicks} from "../services/links";
 import {useEffect} from "react";
 
 const Redirect = ({ page }) => {
@@ -12,7 +12,10 @@ const Redirect = ({ page }) => {
                 return navigate(page);
 
             const link = await getLink(short_url.split('/')[0]); // First component of shortened url
-            if (link) window.location.href = link.url;
+            if (link) {
+                await incrementLinkClicks(short_url)
+                window.location.href = link.url;
+            }
             else navigate('/');
         }
 
