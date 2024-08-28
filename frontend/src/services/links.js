@@ -22,17 +22,12 @@ export const createLink = async (accessToken, short_url, url) => {
             // fields = ['id', 'short_url', 'url', 'owner', 'clicks', 'timestamp']
             short_url: short_url,
             url: url,
-        },
-        {
+        }, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization':'Bearer ' + String(accessToken)
             }
         });
-
-    if (response.status !== 200 || response.status !== 201) {
-        throw Error(response.statusText);  // TODO implement error handling wrapper for API errors and make more descriptive from axios
-    }
 
     return response.data;
 }

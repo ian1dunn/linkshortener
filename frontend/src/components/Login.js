@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react'
 import AuthContext from "../context/AuthContext";
 import {Button, Container, Form} from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import {Link} from "react-router-dom";
 
 const Login = () => {
     let {loginUser} = useContext(AuthContext);
@@ -20,19 +21,20 @@ const Login = () => {
                     type="text"
                     name="username"
                     placeholder="Enter Username"
-                    {...register("username", { required: true })}
+                    {...register("username", {required: true})}
                 />
                 {errors.username && <p className="text-danger">Username is required.</p>}
                 <Form.Control
                     type="password"
                     name="password"
                     placeholder="Enter Password"
-                    {...register("password", { required: true })}
+                    {...register("password", {required: true})}
                 />
                 {errors.password && <p className="text-danger">Password is required.</p>}
                 <Button class="btn btn-primary" type="submit">Login</Button>
                 {loginError && <p className="text-danger">Invalid credentials.</p>}
             </Form>
+            <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
         </Container>
     )
 }
