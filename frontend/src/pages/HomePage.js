@@ -27,7 +27,7 @@ const HomePage = () => {
         if (user)
             getLinks()
     // eslint-disable-next-line
-    }, []);
+    }, [user]);
 
     const onCreateFormSubmit = async (data) => {
         try {
