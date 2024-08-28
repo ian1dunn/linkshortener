@@ -9,7 +9,7 @@ const Header = () => {
 
     useEffect(() => {
         const getUser = async() => {
-            let data = await getUserByID(authTokens.access, user.user_id)
+            let data = await getUserByID(user.user_id)
 
             if(data){
                 setUserData(data)

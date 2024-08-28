@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import {AuthProvider} from "./context/AuthContext";
 import HomePage from "./pages/HomePage";
 import React from "react";
+import Redirect from "./utils/Redirect";
 
 function App() {
     return (
@@ -11,7 +12,7 @@ function App() {
                 <AuthProvider>
                     <Routes>
                         <Route path="/" element={<HomePage />} />
-                        {/*<Route path="/login" element={<Login/>}/>*/}
+                        <Route path="/:short_url" element={<Redirect />}/>
                     </Routes>
                 </AuthProvider>
             </Router>

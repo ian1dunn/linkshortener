@@ -1,9 +1,21 @@
 import client, {LINK_ENDPOINT, ROOT_URL, USER_ENDPOINT} from "./api";
 
-export const getUserLinks = async (accessToken, userID) => {
+export const getAllLinks = async () => {
+    const response = await client.get(LINK_ENDPOINT);
+    return response.data;
+}
+
+export const getUserLinks = async (userID) => {
     const response = await client.get(USER_ENDPOINT + userID + LINK_ENDPOINT);
     return response.data;
 }
+
+export const getLink = async (short_url) => {
+    // TODO add new endpoint
+    const allLinks = await getAllLinks()
+    return allLinks.find((link) => link.short_url === short_url)
+}
+
 
 export const createLink = async (accessToken, short_url, url) => {
     const response = await client.post(ROOT_URL + LINK_ENDPOINT, {

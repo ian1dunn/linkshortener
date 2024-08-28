@@ -17,16 +17,15 @@ const HomePage = () => {
     const handleShow = () => setShow(true);
 
     const getLinks = async() => {
-        if (authTokens && user) {
-            let data = await getUserLinks(authTokens.access, user.user_id);
-            if(data)
-                setLinks(data)
-        }
+        let data = await getUserLinks(user.user_id);
+        if (data)
+            setLinks(data)
     }
 
     // Run on component mount
     useEffect(() => {
-        getLinks()
+        if (user)
+            getLinks()
     // eslint-disable-next-line
     }, []);
 
