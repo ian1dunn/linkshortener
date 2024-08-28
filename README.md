@@ -29,22 +29,11 @@ $ npm install
 $ npm run start
 ```
 
-## Models
-
-### Link
-* Short URL
-* URL
-* Owner
-* Number of Clicks
-* Timestamp
-
-### User
-* First Name
-* Last Name
-* Username
-* Email
-* Password
-* Timestamp
+## Future Improvements
+- Admin page (see all links and users)
+- Email verification/password reset
+- More link metrics (locations, etc.)
+- 
 
 ## API
 
@@ -61,10 +50,28 @@ $ npm run start
 ### `/users`
 
 | Request | Endpoint           | Behavior                        |
-|--------|--------------------|---------------------------------|
-| GET    | `/users`           | Get all users                   |
-| POST   | `/users/`          | Create/update a user            |
-| GET    | `/users/:id`       | Get a single user               |
-| PUT    | `/users/:id`       | Update a user                   |
-| DELETE | `/users/:id`       | Delete a user                   |
-| GET    | `/users/:id/links` | Get the links created by a user |
+|---------|--------------------|---------------------------------|
+| GET     | `/users`           | Get all users                   |
+| POST    | `/users/`          | Create/update a user            |
+| GET     | `/users/:id`       | Get a single user               |
+| PUT     | `/users/:id`       | Update a user                   |
+| DELETE  | `/users/:id`       | Delete a user                   |
+| GET     | `/users/:id/links` | Get the links created by a user |
+
+## Models
+
+### Link
+* Short URL
+* URL
+* Owner
+* Number of Clicks
+* Timestamp
+
+### User
+* First Name
+* Last Name
+* Username
+* Email
+* Password
+* Created Timestamp
+* Most Recent Login Timestamp
