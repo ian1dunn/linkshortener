@@ -1,6 +1,6 @@
 # linkshortener
 
-This project is a full-stack link shortener implemented in React and Django.
+> This project is a full-stack link shortener implemented in **React** and **Django**.
 
 It uses two main Django API endpoints: user and link. These
 endpoints enable CRUD operations on the Django default User model and a custom Link model
