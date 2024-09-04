@@ -46,6 +46,6 @@ jobs:
         port: 22
         script: |
           cd ~/linkshortener
-          docker-compose down
-          docker-compose pull
-          docker-compose up -d
+          docker compose down
+          docker compose pull
+          docker compose up -d
