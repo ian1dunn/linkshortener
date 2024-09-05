@@ -62,6 +62,8 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '157.230.202.166']
+
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
