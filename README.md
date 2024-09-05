@@ -20,7 +20,9 @@ $ docker compose down   # Shutdown the containers
 - Admin page (see all links and users)
 - Email verification/password reset
 - More link metrics (locations, etc.)
-- Separate nginx server from React front end
+- Finalize production environment
+  - Separate nginx server from React front end
+  - Complete Django [deployment checklist](https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/)
 
 ## API
 
