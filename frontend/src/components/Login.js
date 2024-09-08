@@ -16,6 +16,12 @@ const Login = () => {
 
     return (
         <Container className="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center">
+            <Container className="pb-5">
+                <h3 className="text-">clipti.me</h3>
+                <span className="text-muted small">A minimalistic link shortener. Try </span>
+                <a className="small" href="http://clipti.me/google" target="blank">clipti.me/google</a>!
+            </Container>
+
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Row className="mb-2">
                     <Form.Control

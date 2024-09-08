@@ -56,7 +56,7 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True  # TODO cors is somewhat broken
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '157.230.202.166']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '157.230.202.166', 'clipti.me']
 
 ROOT_URLCONF = 'backend.urls'
 
