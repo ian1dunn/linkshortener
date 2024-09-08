@@ -19,7 +19,7 @@ const Links = ({ links, update }) => {
 
     // TODO link clicks require refresh
 
-    return (
+    return links && links.length > 0 ? (
         <Table striped hover>
             <thead>
                 <tr>
@@ -42,7 +42,7 @@ const Links = ({ links, update }) => {
                 }
             </tbody>
         </Table>
-    )
+    ) : <></>
 }
 
 export default Links

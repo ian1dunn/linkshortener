@@ -28,7 +28,7 @@ the link. This can be scaled to add more metrics in the future.
 
 ### Start Database
 ```bash
-$ docker compose up linkshortener-db-1
+$ docker compose up -d db  # Run detached
 ```
 
 ### Start Backend
@@ -37,6 +37,8 @@ $ cd backend
 
 # Install all relevant packages (first-time setup)
 $ pip install -r requirements.txt
+
+$ export DJANGO_DATABASE='dev'
 
 # Setup Postgres tables (only required when changing models)
 $ python manage.py makemigrations

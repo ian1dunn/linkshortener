@@ -22,14 +22,14 @@ const Header = () => {
     }, [authTokens, user, logoutUser])
 
     return (
-        <Navbar expand="md" className="navbar-dark bg-dark">
+        <Navbar expand="md">
             <Container>
-                <Navbar.Brand>Link Shortener</Navbar.Brand>
+                <Navbar.Brand>clipti.me</Navbar.Brand>
                 <Navbar.Toggle />
                 { user &&
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text className="pe-2">
-                            Signed in as: {userData.username}
+                            Signed in as: {userData.first_name} {userData.last_name}
                         </Navbar.Text>
                         <Button variant="outline-light" onClick={logoutUser}>Logout</Button>
                     </Navbar.Collapse>

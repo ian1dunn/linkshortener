@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import React from "react";
 import Redirect from "./utils/Redirect";
 import SignupPage from "./pages/SignupPage";
+import Footer from "./components/Footer";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                         <Route path="*" element={<Redirect page='/' />}/>
                     </Routes>
                 </AuthProvider>
+                <Footer />
             </Router>
         </div>
     );
