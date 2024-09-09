@@ -35,6 +35,7 @@ services:
     volumes:
       - ./frontend/.nginx/:/etc/nginx/conf.d/:ro
       - ./frontend/.certbot/www/:/var/www/certbot/:ro
+      - ./frontend/.certbot/conf/:/etc/nginx/ssl/:ro
     restart: always
   certbot:
     image: certbot/certbot:latest
