@@ -33,11 +33,11 @@ services:
     depends_on:
       - backend
     volumes:
-      - ./.nginx/:/etc/nginx/conf.d/:ro
-      - ./certbot/www/:/var/www/certbot/:ro
+      - ./frontend/.nginx/:/etc/nginx/conf.d/:ro
+      - ./frontend/.certbot/www/:/var/www/certbot/:ro
     restart: always
   certbot:
     image: certbot/certbot:latest
     volumes:
-      - ./frontend/certbot/www/:/var/www/certbot/:rw
-      - ./frontend/certbot/conf/:/etc/letsencrypt/:rw
+      - ./frontend/.certbot/www/:/var/www/certbot/:rw
+      - ./frontend/.certbot/conf/:/etc/letsencrypt/:rw
