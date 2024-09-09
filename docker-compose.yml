@@ -8,6 +8,7 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    restart: always
   backend:
     build: ./backend
     image: ian1dunn/linkshortener-backend:latest
@@ -21,17 +22,20 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
+    restart: always
   frontend:
     build: ./frontend
     image: ian1dunn/linkshortener-frontend:latest
     container_name: frontend
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - backend
     volumes:
       - ./.nginx/:/etc/nginx/conf.d/:ro
       - ./certbot/www/:/var/www/certbot/:ro
+    restart: always
   certbot:
     image: certbot/certbot:latest
     volumes:
