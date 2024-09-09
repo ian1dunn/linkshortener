@@ -31,3 +31,9 @@ services:
       - backend
     volumes:
       - ./.nginx/:/etc/nginx/conf.d/:ro
+      - ./certbot/www/:/var/www/certbot/:ro
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./frontend/certbot/www/:/var/www/certbot/:rw
+      - ./frontend/certbot/conf/:/etc/letsencrypt/:rw
