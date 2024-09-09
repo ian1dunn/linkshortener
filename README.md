@@ -1,4 +1,4 @@
-# linkshortener
+# [clipti.me](https://clipti.me/)
 
 This project is a full-stack link shortener implemented in **React** and **Django**.
 
