@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export let ROOT_URL = `${window.location.protocol}//${window.location.hostname}:8000/api`;
+export let ROOT_URL = `${window.location.protocol}//${window.location.hostname}/api`;
 export let TOKEN_ENDPOINT = '/token/';
 export let TOKEN_REFRESH_ENDPOINT = TOKEN_ENDPOINT + 'refresh/';
 export let LINK_ENDPOINT = '/links/';
