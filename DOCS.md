@@ -59,24 +59,3 @@ $ npm install
 # Start React app (development)
 $ npm run start
 ```
-
-## SSL Certificate
-> Using the certbot container to install a Let's Encrypt certificate.
-
-### Obtaining the initial certificate
-```bash
-$ docker compose up
-
-# Dry run of certbot to make sure everything works
-$ docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ --dry-run -d [domain-name]
-
-# If no errors
-$ docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d [domain-name]
-
-$ docker compose restart
-```
-
-### Renewing
-```bash
-$ docker compose run --rm certbot renew
-```
