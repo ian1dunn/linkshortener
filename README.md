@@ -9,22 +9,27 @@ This project is a full-stack link shortener implemented in **React** and **Djang
 If you haven't already, [install Docker Compose](https://docs.docker.com/compose/install/).
 
 ```bash
-$ docker compose up -d  # -d detaches the containers from the existing shell.
+# The prod profile uses an Nginx reverse proxy and certbot to host an https server
+$ docker compose --profile dev up  # -d detaches the containers from the existing shell.
 
 $ docker compose down   # Shutdown the containers
 ```
 
-> To run in a development environment (restarting on changes), see [Development Setup](./DOCS.md#development-setup)
+> To run in different environments (for production or restarting on changes), see [Project Environments](./DOCS.md#project-environments)
 
 ## Future Improvements
 - Admin page (see all links and users)
 - Email verification/password reset
 - More link metrics (locations, etc.)
 - Finalize production environment
-  - Separate nginx server from React front end
   - Complete Django [deployment checklist](https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/)
+  - Setup database updates/migrations for dev and prod profiles
+- A nice loading screen for redirects
 
 ## API
+```
+http://localhost:80/api/
+```
 
 ### `/links`
 

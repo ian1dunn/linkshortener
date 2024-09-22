@@ -1,6 +1,7 @@
 services:
   db:
     container_name: db
+    profiles: [prod, dev]
     image: postgres
     volumes:
       - ./data/db:/var/lib/postgresql/data
@@ -9,8 +10,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     restart: always
+
   backend:
     build: ./backend
+    profiles: [prod, dev]
     image: ian1dunn/linkshortener-backend:latest
     container_name: backend
     command: python manage.py runserver 0.0.0.0:8000
@@ -23,8 +26,23 @@ services:
     depends_on:
       - db
     restart: always
-  frontend:
+
+  frontend-dev:
     build: ./frontend
+    profiles: [dev]
+    image: ian1dunn/linkshortener-frontend:latest
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/.nginx/nginx-dev.conf:/etc/nginx/conf.d/nginx-dev.conf:ro
+    restart: always
+
+  frontend-prod:
+    build: ./frontend
+    profiles: [prod]
     image: ian1dunn/linkshortener-frontend:latest
     container_name: frontend
     ports:
@@ -33,11 +51,13 @@ services:
     depends_on:
       - backend
     volumes:
-      - ./frontend/.nginx/:/etc/nginx/conf.d/:ro
+      - ./frontend/.nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
       - ./frontend/.certbot/www/:/var/www/certbot/:ro
       - ./frontend/.certbot/conf/:/etc/nginx/ssl/:ro
     restart: always
+
   certbot:
+    profiles: [prod,certbot]
     image: certbot/certbot:latest
     volumes:
       - ./frontend/.certbot/www/:/var/www/certbot/:rw

@@ -56,7 +56,7 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True  # TODO cors is somewhat broken
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '157.230.202.166', 'clipti.me']
+ALLOWED_HOSTS = ['localhost', 'localhost:3000', '127.0.0.1', '157.230.202.166', 'clipti.me']
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -152,7 +152,7 @@ REST_FRAMEWORK = {
 
 # JWT settings
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,

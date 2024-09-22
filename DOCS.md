@@ -24,12 +24,31 @@ When navigating to a link (i.e. localhost:3000/google), it will automatically re
 website after sending a PATCH API request to the backend to increment the number of clicks of
 the link. This can be scaled to add more metrics in the future.
 
-## Development Setup
+## Project Environments
 
-### Start Database
+### Production (HTTPS Certification with Let's Encrypt)
+
 ```bash
-$ docker compose up -d db  # Run detached
+# Do a dry run of the certbot container because Let's Encrypt limits available free certificates
+$ docker compose --profile certbot run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ --dry-run -d [domain-name]
+
+# If there are errors, actually generate the HTTPS certificate
+$ docker compose --profile certbot run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d [domain-name]
+
+# Restart all containers to propagate changes
+$ docker compose --profile prod restart -d  # -d detaches the containers from the existing shell.
+
+$ docker compose down   # Shutdown the containers
 ```
+
+> Let's Encrypt certificates last for three months, after which it is necessary to renew them. To renew certificates, use:
+> ```bash
+> docker-compose run --rm certbot renew
+> ```
+
+### Testing
+To run what will actually be deployed in a production environment, use the `dev` profile. However, to test changes in
+real-time to avoid building Docker containers after changes, use the following commands.
 
 ### Start Backend
 ```bash
@@ -38,6 +57,7 @@ $ cd backend
 # Install all relevant packages (first-time setup)
 $ pip install -r requirements.txt
 
+# This environment makes Django switch to a light-weight SQLite database to avoid needing to run the Postgres container
 $ export DJANGO_DATABASE='dev'
 
 # Setup Postgres tables (only required when changing models)
@@ -58,4 +78,14 @@ $ npm install
 
 # Start React app (development)
 $ npm run start
+```
+
+## Common Issues
+If data in the table doesn't exist using the `prod` or `dev` profiles, run the following commands (assuming the 
+containers are running).
+
+```bash
+$ docker compose exec backend python3 manage.py makemigrations
+$ docker compose exec backend python3 manage.py migrate
+$ docker compose --profile <prod|dev> restart 
 ```
