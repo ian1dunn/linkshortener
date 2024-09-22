@@ -10,7 +10,7 @@ If you haven't already, [install Docker Compose](https://docs.docker.com/compose
 
 ```bash
 # The prod profile uses an Nginx reverse proxy and certbot to host an https server
-$ docker compose --profile dev up  # -d detaches the containers from the existing shell.
+$ docker compose --profile dev up -d # -d detaches the containers from the existing shell.
 
 $ docker compose down   # Shutdown the containers
 ```
